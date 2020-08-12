@@ -47,6 +47,7 @@ DTS_X = 18
 functions = ["Wifi", "Bluetooth", "Portable", "Aux", "Optical", "CP", "HDMI",
              "ARC", "Spotify", "Optical2", "HDMI2", "HDMI3", "LG TV", "Mic",
              "Chromecast", "Optical/HDMI ARC", "LG Optical", "FM", "USB", "USB2"]
+
 WIFI = 0
 BLUETOOTH = 1
 PORTABLE = 2
@@ -85,7 +86,7 @@ class temescal:
     def connect(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.connect((self.address, self.port))
-        
+
     def listen(self):
         while True:
             try:
@@ -108,7 +109,7 @@ class temescal:
                 response = self.decrypt_packet(data)
                 if response is not None:
                     self.callback(json.loads(response))
-                    
+
     def encrypt_packet(self, data):
         padlen = 16 - (len(data) % 16)
         for i in range(padlen):
@@ -154,7 +155,7 @@ class temescal:
     def get_play(self):
         data = {"cmd": "get", "msg": "PLAY_INFO"}
         self.send_packet(data)
-        
+
     def get_func(self):
         data = {"cmd": "get", "msg": "FUNC_VIEW_INFO"}
         self.send_packet(data)
@@ -178,7 +179,7 @@ class temescal:
     def get_ap_info(self):
         data = {"cmd": "get", "msg": "SHARE_AP_INFO"}
         self.send_packet(data)
-        
+
     def get_update_info(self):
         data = {"cmd": "get", "msg": "UPDATE_VIEW_INFO"}
         self.send_packet(data)
@@ -202,7 +203,7 @@ class temescal:
     def get_test_info(self):
         data = {"cmd": "get", "msg": "TEST_DEV"}
         self.send_packet(data)
-    
+
     def test_tone(self):
         data = {"cmd": "set", "msg": "TEST_TONE_REQ"}
         self.send_packet(data)
@@ -218,7 +219,7 @@ class temescal:
     def set_drc(self, enable):
         data = {"cmd": "set", "data": {"b_drc": enable}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
-    
+
     def set_av_sync(self, value):
         data = {"cmd": "set", "data": {"i_av_sync": value}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
@@ -226,7 +227,7 @@ class temescal:
     def set_woofer_level(self, value):
         data = {"cmd": "set", "data": {"i_woofer_level": value}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
-    
+
     def set_rear_control(self, enable):
         data = {"cmd": "set", "data": {"b_rear": enable}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
@@ -234,11 +235,11 @@ class temescal:
     def set_read_level(self, value):
         data = {"cmd": "set", "data": {"i_rear_level": value}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
-    
+
     def set_tv_remote(self, enable):
         data = {"cmd": "set", "data": {"i_tv_remote": enable}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
-    
+
     def set_auto_power(self, enable):
         data = {"cmd": "set", "data": {"b_auto_power": enable}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
@@ -250,15 +251,15 @@ class temescal:
     def set_bt_standby(self, enable):
         data = {"cmd": "set", "data": {"b_bt_standby": enable}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
-    
+
     def set_bt_restrict(self, enable):
         data = {"cmd": "set", "data": {"b_conn_bt_limit": enable}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
-    
+
     def set_sleep_time(self, value):
         data = {"cmd": "set", "data": {"i_sleep_time": value}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
-    
+
     def set_func(self, value):
         data = {"cmd": "set", "data": {"i_curr_func": value}, "msg": "FUNC_VIEW_INFO"}
         self.send_packet(data)
