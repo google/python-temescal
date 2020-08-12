@@ -220,6 +220,10 @@ class temescal:
         data = {"cmd": "set", "data": {"b_drc": enable}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
 
+    def set_neuralx(self, enable):
+        data = {"cmd": "set", "data": {"b_neuralx": enable}, "msg": "SETTING_VIEW_INFO"}
+        self.send_packet(data)
+
     def set_av_sync(self, value):
         data = {"cmd": "set", "data": {"i_av_sync": value}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
