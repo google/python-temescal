@@ -230,6 +230,14 @@ class temescal:
         data = {"cmd": "set", "data": {"i_rear_level": value}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
 
+    def set_top_level(self, value):
+        data = {"cmd": "set", "data": {"i_top_level": value}, "msg": "SETTING_VIEW_INFO"}
+        self.send_packet(data)
+
+    def set_center_level(self, value):
+        data = {"cmd": "set", "data": {"i_center_level": value}, "msg": "SETTING_VIEW_INFO"}
+        self.send_packet(data)
+
     def set_tv_remote(self, enable):
         data = {"cmd": "set", "data": {"b_tv_remote": enable}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
