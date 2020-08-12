@@ -46,7 +46,7 @@ DTS_X = 18
 
 functions = ["Wifi", "Bluetooth", "Portable", "Aux", "Optical", "CP", "HDMI",
              "ARC", "Spotify", "Optical2", "HDMI2", "HDMI3", "LG TV", "Mic",
-             "Chromecast", "Optical/HDMI ARC", "LG Optical", "FM", "USB"]
+             "Chromecast", "Optical/HDMI ARC", "LG Optical", "FM", "USB", "USB2"]
 WIFI = 0
 BLUETOOTH = 1
 PORTABLE = 2
@@ -66,6 +66,7 @@ OPTICAL_HDMIARC = 15
 LG_OPTICAL = 16
 FM = 17
 USB = 18
+USB_2 = 19
 
 class temescal:
     def __init__(self, address, port=9741, callback=None, logger=None):
