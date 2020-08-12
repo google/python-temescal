@@ -199,7 +199,7 @@ class temescal:
         self.send_packet(data)
 
     def set_night_mode(self, enable):
-        data = {"cmd": "set", "data": {"b_night_mode": enable}, "msg": "SETTING_VIEW_INFO"}
+        data = {"cmd": "set", "data": {"b_night_time": enable}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
 
     def set_avc(self, enable):
@@ -222,12 +222,12 @@ class temescal:
         data = {"cmd": "set", "data": {"b_rear": enable}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
 
-    def set_read_level(self, value):
+    def set_rear_level(self, value):
         data = {"cmd": "set", "data": {"i_rear_level": value}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
 
     def set_tv_remote(self, enable):
-        data = {"cmd": "set", "data": {"i_tv_remote": enable}, "msg": "SETTING_VIEW_INFO"}
+        data = {"cmd": "set", "data": {"b_tv_remote": enable}, "msg": "SETTING_VIEW_INFO"}
         self.send_packet(data)
 
     def set_auto_power(self, enable):
