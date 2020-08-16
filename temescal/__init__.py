@@ -73,15 +73,16 @@ class temescal:
         self.key = b'T^&*J%^7tr~4^%^&I(o%^!jIJ__+a0 k'
         self.address = address
         self.port = port
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.callback = callback
         self.logger = logger
+        self.socket = None
         self.connect()
         if callback is not None:
             self.thread = Thread(target=self.listen, daemon=True)
             self.thread.start()
 
     def connect(self):
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.connect((self.address, self.port))
         
     def listen(self):
