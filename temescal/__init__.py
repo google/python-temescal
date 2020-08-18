@@ -91,6 +91,13 @@ class temescal:
             except Exception:
                 self.connect()
 
+            if len(data) == 0: # the soundbar closed the connection, recreate it
+                self.socket.shutdown(socket.SHUT_RDWR)
+                self.socket.close()
+                self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                self.connect()
+                continue
+
             if data[0] == 0x10:
                 data = self.socket.recv(4)
                 length = struct.unpack(">I", data)[0]
