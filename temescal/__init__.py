@@ -92,10 +92,15 @@ class temescal:
             except Exception:
                 self.connect()
 
+            if len(data) == 0:
+                continue
+
             if data[0] == 0x10:
                 data = self.socket.recv(4)
                 length = struct.unpack(">I", data)[0]
                 data = self.socket.recv(length)
+                if len(data) % 16 != 0:
+                    continue
                 response = self.decrypt_packet(data)
                 if response is not None:
                     self.callback(json.loads(response))
