@@ -46,7 +46,7 @@ DTS_X = 18
 
 functions = ["Wifi", "Bluetooth", "Portable", "Aux", "Optical", "CP", "HDMI",
              "ARC", "Spotify", "Optical2", "HDMI2", "HDMI3", "LG TV", "Mic",
-             "Chromecast", "Optical/HDMI ARC", "LG Optical", "FM", "USB"]
+             "Chromecast", "Optical/HDMI ARC", "LG Optical", "FM", "USB", "USB2"]
 WIFI = 0
 BLUETOOTH = 1
 PORTABLE = 2
@@ -66,6 +66,7 @@ OPTICAL_HDMIARC = 15
 LG_OPTICAL = 16
 FM = 17
 USB = 18
+USB_2 = 19
 
 class temescal:
     def __init__(self, address, port=9741, callback=None, logger=None):
@@ -73,15 +74,16 @@ class temescal:
         self.key = b'T^&*J%^7tr~4^%^&I(o%^!jIJ__+a0 k'
         self.address = address
         self.port = port
-        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.callback = callback
         self.logger = logger
+        self.socket = None
         self.connect()
         if callback is not None:
             self.thread = Thread(target=self.listen, daemon=True)
             self.thread.start()
 
     def connect(self):
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.socket.connect((self.address, self.port))
         
     def listen(self):
@@ -94,7 +96,6 @@ class temescal:
             if len(data) == 0: # the soundbar closed the connection, recreate it
                 self.socket.shutdown(socket.SHUT_RDWR)
                 self.socket.close()
-                self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self.connect()
                 continue
 
@@ -102,6 +103,8 @@ class temescal:
                 data = self.socket.recv(4)
                 length = struct.unpack(">I", data)[0]
                 data = self.socket.recv(length)
+                if len(data) % 16 != 0:
+                    continue
                 response = self.decrypt_packet(data)
                 if response is not None:
                     self.callback(json.loads(response))
