@@ -93,7 +93,10 @@ class temescal:
             except Exception:
                 self.connect()
 
-            if len(data) == 0:
+            if len(data) == 0: # the soundbar closed the connection, recreate it
+                self.socket.shutdown(socket.SHUT_RDWR)
+                self.socket.close()
+                self.connect()
                 continue
 
             if data[0] == 0x10:
