@@ -22,7 +22,8 @@ from threading import Thread
 equalisers = ["Standard", "Bass", "Flat", "Boost", "Treble and Bass", "User",
               "Music", "Cinema", "Night", "News", "Voice", "ia_sound",
               "Adaptive Sound Control", "Movie", "Bass Blast", "Dolby Atmos",
-              "DTS Virtual X", "Bass Boost Plus", "DTS X"]
+              "DTS Virtual X", "Bass Boost Plus", "DTS X", "AI Sound Pro",
+              "Clear Voice", "Sports", "Game"]
 
 STANDARD = 0
 BASS = 1
@@ -43,8 +44,12 @@ DOLBY_ATMOS = 15
 DTS_VIRTUAL_X = 16
 BASS_BOOST_PLUS = 17
 DTS_X = 18
+AI_SOUND_PRO = 19
+CLEAR_VOICE = 20
+SPORTS = 21
+GAME = 22
 
-functions = ["Wifi", "Bluetooth", "Portable", "Aux", "Optical", "CP", "HDMI",
+functions = ["Wi-Fi", "Bluetooth", "Portable", "Aux", "Optical", "CP", "HDMI",
              "ARC", "Spotify", "Optical2", "HDMI2", "HDMI3", "LG TV", "Mic",
              "Chromecast", "Optical/HDMI ARC", "LG Optical", "FM", "USB", "USB2"]
 
@@ -68,6 +73,16 @@ LG_OPTICAL = 16
 FM = 17
 USB = 18
 USB_2 = 19
+
+stream_types = ["Unknown0", "Google Cast", "Unknown2", "Unknown3", "Spotify Connect"]
+
+GOOGLE_CAST = 1
+SPOTIFY_CONNECT = 4
+
+play_control_states = ["Playing", "Stopped/Paused"]
+
+PLAYING = 0
+PAUSED = 1
 
 class temescal:
     def __init__(self, address, port=9741, callback=None, logger=None):
