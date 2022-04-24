@@ -51,7 +51,8 @@ GAME = 22
 
 functions = ["Wi-Fi", "Bluetooth", "Portable", "Aux", "Optical", "CP", "HDMI",
              "ARC", "Spotify", "Optical2", "HDMI2", "HDMI3", "LG TV", "Mic",
-             "Chromecast", "Optical/HDMI ARC", "LG Optical", "FM", "USB", "USB2"]
+             "Chromecast", "Optical/HDMI ARC", "LG Optical", "FM", "USB", "USB2",
+             "E-ARC"]
 
 WIFI = 0
 BLUETOOTH = 1
@@ -73,6 +74,7 @@ LG_OPTICAL = 16
 FM = 17
 USB = 18
 USB_2 = 19
+E_ARC = 20
 
 stream_types = ["Unknown0", "Google Cast", "Unknown2", "Unknown3", "Spotify Connect"]
 
