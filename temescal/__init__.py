@@ -77,6 +77,7 @@ class temescal:
         self.callback = callback
         self.logger = logger
         self.connect()
+        
         if callback is not None:
             self.thread = Thread(target=self.listen, daemon=True)
             self.thread.start()
